@@ -1,0 +1,45 @@
+version: '3'
+
+tasks:
+  default:
+    desc: List available tasks
+    cmds:
+      - task --list
+    silent: true
+
+  dev:
+    desc: Start local dev environment
+    cmds:
+      - docker-compose up --build
+
+  stop:
+    desc: Stop all containers
+    cmds:
+      - docker-compose down -v
+
+  build:
+    desc: Build all services (Java/Kotlin)
+    cmds:
+      - ./mvnw clean install -DskipTests
+
+  kafka:reset:
+    desc: Reset Kafka topic `view-events`
+    cmds:
+      - docker-compose exec kafka kafka-topics.sh --delete --topic view-events --bootstrap-server localhost:9092 || true
+
+  logs:
+    desc: Tail logs from all services
+    cmds:
+      - docker-compose logs -f
+
+  grafana:
+    desc: Open Grafana in browser
+    cmds:
+      - open http://localhost:3000
+    silent: true
+
+  diagram:render:
+    desc: Render all PlantUML diagrams from ./docs
+    dir: docs/architecture
+    cmds:
+      - plantuml *.puml

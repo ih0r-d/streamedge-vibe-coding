@@ -1,0 +1,23 @@
+global:
+  scrape_interval: 10s
+
+scrape_configs:
+  - job_name: 'gateway-service'
+    static_configs:
+      - targets: ['gateway-service:8080']
+
+  - job_name: 'user-service'
+    static_configs:
+      - targets: ['user-service:8080']
+
+  - job_name: 'video-service'
+    static_configs:
+      - targets: ['video-service:8080']
+
+  - job_name: 'view-service'
+    static_configs:
+      - targets: ['view-service:8080']
+
+  - job_name: 'analytics-service'
+    static_configs:
+      - targets: ['analytics-service:8080']

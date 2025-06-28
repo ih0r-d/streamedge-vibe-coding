@@ -1,0 +1,38 @@
+{
+  "annotations": {
+    "list": []
+  },
+  "editable": true,
+  "id": null,
+  "panels": [
+    {
+      "type": "graph",
+      "title": "HTTP Request Rate",
+      "datasource": "Prometheus",
+      "targets": [
+        {
+          "expr": "rate(http_server_requests_seconds_count[1m])",
+          "legendFormat": "{{method}} {{uri}}",
+          "refId": "A"
+        }
+      ],
+      "gridPos": { "x": 0, "y": 0, "w": 12, "h": 8 }
+    },
+    {
+      "type": "graph",
+      "title": "Kafka View Events",
+      "datasource": "Prometheus",
+      "targets": [
+        {
+          "expr": "kafka_server_brokertopicmetrics_messages_in_total",
+          "legendFormat": "{{topic}}",
+          "refId": "B"
+        }
+      ],
+      "gridPos": { "x": 0, "y": 9, "w": 12, "h": 8 }
+    }
+  ],
+  "schemaVersion": 27,
+  "title": "StreamEdge Overview",
+  "version": 1
+}
